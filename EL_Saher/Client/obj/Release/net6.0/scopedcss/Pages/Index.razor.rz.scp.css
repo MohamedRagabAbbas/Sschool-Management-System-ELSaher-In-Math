@@ -1,0 +1,16 @@
+html[b-fmx8hk6p5o], body[b-fmx8hk6p5o] {
+    height: 100%;
+    width: 100%;
+}
+
+body[b-fmx8hk6p5o] {
+}
+.BackGround[b-fmx8hk6p5o] {
+    display: block;
+    justify-self: center;
+    background-image: url(../Images/Background.jpg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 160vh;
+
+}

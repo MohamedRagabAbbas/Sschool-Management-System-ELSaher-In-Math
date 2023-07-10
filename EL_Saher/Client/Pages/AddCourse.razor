@@ -1,0 +1,61 @@
+﻿@page "/AddNewCourse"
+@using EL_Saher.Client.Services
+@using EL_Saher.Shared
+@using EL_Saher.Shared.Models.ServiceModels
+@using Microsoft.AspNetCore.Authorization;
+@inject IManager manager
+@attribute [Authorize]
+<div class="container">
+  <section id="content">
+    <form action="">
+      <h1>اضافة مجموعة جديدة</h1>
+      <div>
+        <input type="text" placeholder="اسم المجموعة" required @bind="@CourseName"  />
+      </div>
+        <div>
+                <input type="text" placeholder="الصف" required @bind="@CourseGrade" />
+        </div>
+      <div>
+        <input type="text" placeholder="سعر المجموعة" required @bind="@CourseCost" />
+      </div>
+      <div>
+        <input type="text" placeholder="المواعيد الاسبوعية" required  @bind="@CourseSchedule"  />
+      </div>
+
+      <div>
+        <button class="btn ButtonStyle"  @onclick="@AddCourseAsync" >إضافة</button>
+      </div>
+    </form><!-- form -->
+  </section><!-- content -->
+</div><!-- container -->
+<div class="messageType">
+    <h3>@message</h3>
+</div>
+
+@code {
+    private string CourseName { get; set; } = string.Empty;
+    private string CourseGrade { get; set; } = string.Empty;
+    private string message { get; set; } = string.Empty;
+    private string messageType { get; set; } = string.Empty;
+    private decimal? CourseCost { get; set; } 
+    private string CourseSchedule { get; set; }= string.Empty;
+
+
+    public async Task AddCourseAsync()
+    {
+        CourseInfo course = new CourseInfo(){ Name = CourseName, Cost = CourseCost, Schedule = CourseSchedule, Grade = CourseGrade };
+        var response = await manager.AddCourseAsync(course);
+        if(response.IsSuccessStatusCode)
+        {
+            messageType = "alert-success";
+            message = "تمت الاضافة بنجاح";
+        }
+        else
+        {
+            messageType = "alert-danger";
+            message = "لم يتم الاضافة ...";
+        }
+    }
+    
+
+}

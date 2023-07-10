@@ -1,0 +1,60 @@
+﻿@page "/AddNewStudentWithParameter/{_CourseIdParameter:int}/{Grade}"
+@page "/AddNewStudent"
+@using EL_Saher.Client.Services
+@using EL_Saher.Shared
+@using EL_Saher.Shared.Models.ServiceModels
+@using Microsoft.AspNetCore.Authorization;
+@inject IManager manager
+@inject IUserServices userService
+@attribute [Authorize]
+<div class="container">
+  <section id="content">
+    <form>
+      <h1>اضافة طالب جديد</h1>
+      <div>
+        <input type="text" placeholder="اسم الطالب" required="" @bind="@StudentName" />
+      </div>
+      <div>
+        <input type="text" placeholder="رقم الهاتف المحمول" required="" @bind="@PhoneNumber"  />
+      </div>
+      <div>
+                <input type="text" placeholder="الصف" required="" @bind="@Grade" />
+      </div>
+      <div>
+        <input type="text" placeholder="تقيم مبدئي للطالب" required="" @bind="@_StudentRate" />
+      </div>
+            <div>
+        <input type="text" placeholder="رقم المجموعة المراد اضافة الطالب إليها" required="" @bind="@_CourseIdParameter" />
+      </div>
+      <div>
+        <button class="btn ButtonStyle"  @onclick="@AddStudentAsync" >إضافة</button>
+      </div>
+    </form><!-- form -->
+  </section><!-- content -->
+</div><!-- container -->
+
+@code {
+    private string StudentName { get; set; } = string.Empty;
+    private string PhoneNumber { get; set; } = string.Empty;
+    private string _StudentGrade { get; set; } = string.Empty;
+    private int _StudentRate { get; set; } = 10;
+    //public int?  _CourseId{ get; set; } 
+    [Parameter]
+    public int?  _CourseIdParameter{ get; set; } 
+    [Parameter] 
+    public string Grade { get; set; } = string.Empty;
+
+    public async Task AddStudentAsync()
+    {
+        StudentInfo student = new StudentInfo() { Name = StudentName, ContactNumber = PhoneNumber, StudentGrade = Grade, StudentRate = _StudentRate, CourseID = int.Parse(_CourseIdParameter.ToString()) };
+        await manager.AddStudentAsync(student);
+    }
+    private bool MobileNumberValidation(string number)
+    {
+        if (number.Length != 11)
+            return false;
+        if (number.Substring(0, 3) != "011" || number.Substring(0, 3) != "010" || number.Substring(0, 3) != "012")
+        return false;
+        return true;
+    }
+}

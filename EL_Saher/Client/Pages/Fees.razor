@@ -1,0 +1,155 @@
+﻿@page "/Fees/{CourseIdParameter:int}"
+@using EL_Saher.Client.Services
+@using EL_Saher.Shared
+@using EL_Saher.Shared.Models.ServiceModels
+@inject IManager manager
+@attribute [Authorize]
+
+
+<h3 class="Title"><span class="ELetter" style="">قائمة الشهور </span></h3>
+
+<div class="row container addAtten" style="width:80%;  justify-self:center; justify-content:space-evenly" >
+    <label class="col-3 btn" style="align-self:center; background-color:#4FC3A1; margin-left:10px;  pointer-events:none ;min-height:100%;">اضافة شهر جديد</label>
+    <input type="text" placeholder="إسم الشهر"  class="col-3 input-group-text text-end" style="margin-left:10px;" @bind="MonthName"/>
+    <input type="number" placeholder="رسوم الحضور:" class="col-3 input-group-text text-end" style="margin-left:30px;" @bind="MonthFee" />
+	<input type="submit" value="إضافة"  class="btn col-2 bg-danger"  @onclick="@AddMonth"/>
+</div>
+
+<div class="table-wrapper">
+    <table class="fl-table">
+        <thead>
+        <tr>
+            <th>رقم الطالب</th>
+            <th>إاسم الطالب</th>
+             @if (student != null)
+            {
+                    @if (student.MonthFees!=null)
+                    {
+                        @foreach (MonthFee month in student.MonthFees)
+                        {
+                            @if (month != null)
+                            {
+                                @if (month != null)
+                                {
+                                    <th> @(month.Name)</th>
+                                }
+                            }
+
+                        }
+                    }
+            }
+        </tr>
+        </thead>
+        <tbody>
+
+            @if (students == null)
+            {
+                <span>Loading...</span>
+            }
+            else
+            {
+                @foreach (var _student in students)
+			    {
+
+                    @if (_student != null)
+                    {
+                        <tr>
+                        <td> @(_student.StudentID)</td>
+                        <td>@(_student.Name)</td>
+                        @if (_student.MonthFees != null)
+                        {
+                            @foreach (var month in _student.MonthFees)
+                            {
+                                @if(month!=null)
+                                {
+                                    <td> <input type="checkbox" @bind="@(month.IsPaid)" @oninput="@((ChangeEventArgs args) => IspaidChange(args, month ))"/> </td>
+                                }
+                            }
+                        }
+                         </tr>
+                    }
+			    } 
+            }
+        </tbody>
+    </table>
+</div>
+<div class="row  mt-5" style="justify-content:space-evenly">
+    <input type="text" class="col-6" @bind="@MonthNameDeleted" placeholder="إسم الشهر المراد حذفه" />
+    <input type="button" class=" col-3 btn btn-outline-danger" @onclick="@Delete" value="حذف" />
+</div>
+
+
+
+@code {
+    private List<Student> students { get; set; } = new List<Student>();
+    private Student student { get; set; } = new Student();
+    public string MonthName { get; set; } = string.Empty;
+    public int MonthFee { get; set; } 
+    public string MonthNameDeleted { get; set; } = string.Empty;
+    [Parameter]
+    public int CourseIdParameter { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetStudents();
+    }
+    public async void AddMonth()
+    {
+        foreach (var student in students)
+        {
+            MonthFeeInfo month = new MonthFeeInfo()
+            {
+                Fees = MonthFee,
+                Name = MonthName,
+                IsPaid = false,
+                StudentId = student.StudentID
+            };
+            await manager.AddMonthFee(month);
+        }
+        await OnInitializedAsync();
+        StateHasChanged();
+    }
+
+
+    public async Task GetStudents()
+    {
+        if(CourseIdParameter==0)
+            students = await manager.GetStudent();
+        else
+        {
+            students = await manager.GetStudentsByCourse(CourseIdParameter);
+        }
+        if(students!=null)
+        {
+            var stu = students.FirstOrDefault();
+            student = stu;
+        }
+    }
+
+    public async void IspaidChange(ChangeEventArgs args, EL_Saher.Shared.MonthFee month)
+    {
+        MonthFeeInfo newmonth = new MonthFeeInfo()
+        {
+            Name = month.Name,
+            Fees = month.Fees,
+            StudentId = month.StudentId,
+            IsPaid = (bool)args.Value 
+        };
+        await manager.UpdateMonthFees(newmonth, month.MonthFeeId);
+    }
+    public async Task Delete()
+    {
+        foreach(var student in students)
+        {
+            var month = student.MonthFees.FirstOrDefault(x => x.Name == MonthNameDeleted);
+            if (month != null)
+            {
+                await manager.DeleteMonthFee(month.MonthFeeId);
+
+            }
+        }
+        await OnInitializedAsync();
+        StateHasChanged();
+    }
+}
+

@@ -1,0 +1,101 @@
+﻿@page "/students"
+@page "/studentsWithParameter/{CourseIdParameter:int}"
+@using EL_Saher.Client.Services
+@using EL_Saher.Shared
+@using EL_Saher.Shared.Models.ServiceModels
+@inject IManager manager
+@attribute [Authorize]
+
+<h3 class="Title"><span class="CLetter " style="">قائمة الطلاب</span></h3>
+<div class="table-wrapper ">
+    <table class="fl-table">
+        <thead>
+        <tr>
+            <th>رقم الطالب</th>
+            <th>اسم الطالب</th>
+            <th>رقم الهاتف</th>
+            <th>الصف</th>
+            <th>تقيم الطالب</th>
+        </tr>
+        </thead>
+        <tbody>
+            @if (students == null)
+            {
+                <span>Loading...</span>
+            }
+            else
+            {
+                @foreach (var student in students)
+                {
+                    @if (student != null)
+                    {
+                        <tr>
+                            <td >@(
+                       student.StudentID
+                       )</td>
+                            <td>@(
+                        student.Name
+                        )</td>
+                            <td>@(
+                        student.ContactNumber
+                        )</td>
+                            <td>@(
+                        student.StudentGrade
+                        )</td>
+                            <td><input type="number" value="@(student.StudentRate)" @onchange="@((ChangeEventArgs args) => Update(args, student))"/></td>
+                        </tr>
+                    }
+                }
+            }
+        </tbody>
+    </table>
+</div>
+<div class="row  mt-5" style="justify-content:space-evenly">
+    <input type="number" class="col-6" @bind="@StudentId" placeholder="رقم الطالب المراد حذفه"/>
+    <input type="button" class=" col-3 btn btn-outline-danger" @onclick="@deleteStudent" value="حذف"/>
+</div>
+@*
+<i class="fa fa-cog col-2" style="color:dodgerblue " aria-hidden="true"></i>
+*@
+
+
+@code {
+    private List<Student> students = new List<Student>();
+    private int? StudentId {get;set;}
+    [Parameter]
+    public int CourseIdParameter { get; set; }=0;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if(CourseIdParameter==0)
+            students = await manager.GetStudent();
+        else
+        {
+            students = await manager.GetStudentsByCourse(CourseIdParameter);
+
+        }
+    }
+
+    public async Task Update(ChangeEventArgs args, Student student)
+    {
+        StudentInfo _student = new StudentInfo()
+        {
+			Name = student.Name,
+			ContactNumber = student.ContactNumber,
+			StudentGrade = student.StudentGrade,
+			StudentRate = Convert.ToInt32(args.Value),
+			CourseID = student.CourseId
+ 		};
+		await manager.UpdateStudent(_student,student.StudentID);
+        await OnInitializedAsync();
+        StateHasChanged();
+    }
+    public async Task  deleteStudent()
+    {
+        if (StudentId!=0)
+            await manager.deleteStudent(int.Parse(StudentId.ToString()));
+        await OnInitializedAsync();
+        StateHasChanged();
+    }
+
+}

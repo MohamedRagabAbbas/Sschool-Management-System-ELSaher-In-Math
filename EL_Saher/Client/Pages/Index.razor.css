@@ -1,0 +1,16 @@
+﻿html, body {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+}
+.BackGround {
+    display: block;
+    justify-self: center;
+    background-image: url(../Images/Background.jpg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 160vh;
+
+}

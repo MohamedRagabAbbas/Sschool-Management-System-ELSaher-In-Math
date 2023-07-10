@@ -1,0 +1,170 @@
+﻿@page "/Exam/{CourseIdParameter:int}"
+@using EL_Saher.Client.Services
+@using EL_Saher.Shared
+@using EL_Saher.Shared.Models.ServiceModels
+@inject IManager manager
+@attribute [Authorize]
+
+
+<h3 class="Title"><span class="ELetter" style="">قائمة الامتحانات</span></h3>
+
+<div class="row container addAtten" style="width:80%;  justify-self:center; justify-content:space-evenly"   >
+    <label class="col-2 btn" style="align-self:center; background-color:#4FC3A1; margin-left:10px;  pointer-events:none ;min-height:100%;">اضافة إمتحان جديد</label>
+    <input type="text" placeholder="إسم الامتحان" class="col-4 input-group-text text-end" style="margin-left:10px;" @bind="@ExamName" />
+    <input type="number" placeholder="الدرجة النهائية من:" class="col-2  input-group-text text-end" style="margin-left:30px;" @bind="@outof"/>
+    <a class="btn col-2 bg-danger" @onclick="@AddExam">إضافة</a>
+</div>
+
+<div class="table-wrapper">
+    <table class="fl-table">
+        <thead>
+        <tr>
+            <th>رقم الطالب</th>
+            <th>إاسم الطالب</th>
+            <th>إسم الامتحان</th>
+            <th>درجة الطالب</th>
+            <th>الدرجة النهائية</th>
+        </tr>
+        </thead>
+        <tbody>
+            @if (students == null)
+            {
+                <span>Loading...</span>
+            }
+            else
+            {
+                @foreach (var student in students)
+			    {
+                    @if (student != null)
+                    {
+                        @if (student.Exams != null)
+                        {
+                            @foreach (var exam in student.Exams)
+                                {
+                                @if(exam!=null)
+                                {
+                                    <tr>
+                                        <td> @(student.StudentID)</td>
+                                        <td>@(student.Name)</td>
+                                        <td> <input type="text" value="@(exam.Name)" @onchange="@((ChangeEventArgs args) => changeExamName2(args, exam))" /> </td>
+                                        <td> <input type="text" value="@(exam.Score)" @onchange="@((ChangeEventArgs args) => changeScoreOutOf2(args, exam))" /></td>
+                                        <td> <input type="text" value="@(exam.OutOf)" @onchange="@((ChangeEventArgs args) => changeExamOutOf2(args, exam))" /> </td>
+				                    </tr>
+                                }
+                            }
+                        }
+                    }
+			    } 
+            }
+        </tbody>
+    </table>
+</div>
+<div class="row  mt-5" style="justify-content:space-evenly">
+    <input type="text" class="col-6" @bind="@ExamNameDeleted" placeholder="إسم الامتحان" />
+    <input type="button" class=" col-3 btn btn-outline-danger" @onclick="@deleteExam" value="حذف" />
+</div>
+@*<a class="btn bg-danger" @onclick="@UpdateAttendance"></a>*@
+
+
+@code {
+    private List<Student> students  { get; set; } = new List<Student>();
+    public string ExamName { get; set; } = string.Empty;
+    public int outof { get; set; }
+    public string ExamNameDeleted { get; set; } = string.Empty;
+    [Parameter]
+    public int CourseIdParameter { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetStudents();
+    }
+    public async void AddExam()
+    {
+        foreach (var student in students)
+        {
+            ExamInfo exam = new ExamInfo()
+            {
+                Name = ExamName,
+                OutOf = outof,
+                Date = DateTime.Today,
+                StudentId = student.StudentID,
+                Score = 0
+            };
+            await manager.AddExam(exam);
+        }
+        await OnInitializedAsync();
+        StateHasChanged();
+    }
+    public async Task GetStudents()
+    {
+        students.Clear();
+        if(CourseIdParameter==0)
+            students = await manager.GetStudent();
+        else
+        {
+            students = await manager.GetStudentsByCourse(CourseIdParameter);
+        }
+    }
+    public async void deleteExam()
+    {
+        foreach(var sudent in students)
+        {
+            var exam = sudent.Exams.Where(e => e.Name == ExamNameDeleted).FirstOrDefault();
+            if (exam != null)
+            {
+                await manager.DeleteExam(exam.ExamID);
+            }
+        }
+        await OnInitializedAsync();
+        StateHasChanged();
+    }
+
+    public void changeExamName2(ChangeEventArgs args, EL_Saher.Shared.Exam exam)
+    {
+		 ExamInfo _exam = new ExamInfo()
+			{
+				Name = args.Value.ToString(),
+				OutOf = exam.OutOf,
+				Date = exam.Date,
+				StudentId = exam.StudentId,
+				Score = exam.Score
+			};
+		manager.UpdateExam(_exam,exam.ExamID);
+    }
+    public void changeExamOutOf2(ChangeEventArgs args, EL_Saher.Shared.Exam exam)
+    {
+		ExamInfo _exam = new ExamInfo()
+        {
+            Name = exam.Name,
+			OutOf = (args.Value.GetType() == typeof(string)) ? int.Parse(args.Value.ToString()) : (int)args.Value,
+			Date = exam.Date,
+			StudentId = exam.StudentId,
+			Score = exam.Score
+		};
+		manager.UpdateExam(_exam,exam.ExamID);
+    }
+     public void changeScoreOutOf2(ChangeEventArgs args, EL_Saher.Shared.Exam exam)
+     {
+         ExamInfo _exam = new ExamInfo()
+         {
+             Name = exam.Name,
+			 OutOf = exam.OutOf,
+			 Date = exam.Date,
+			 StudentId = exam.StudentId,
+			 Score = (args.Value.GetType() == typeof(string)) ? int.Parse(args.Value.ToString()) : (int)args.Value
+		 };
+		manager.UpdateExam(_exam,exam.ExamID);
+     }
+
+
+
+
+
+
+
+
+
+
+    
+}
+

@@ -1,0 +1,116 @@
+﻿@page "/viewAttendence/{CourseIdParameter:int}"
+@using EL_Saher.Client.Services
+@using EL_Saher.Shared
+@using EL_Saher.Shared.Models.ServiceModels
+@inject IManager manager
+@attribute [Authorize]
+
+
+<h3 class="Title"><span class="ALetter" style="">قائمة الحضور</span></h3>
+
+<div class="table-wrapper" >
+    <div class="row container">
+        <div class="col-5 row" style="justify-content:space-around">
+            <p class="col-3" style="background-color:none">تاريخ التسجيل</p>
+            <p class="col-2" style="background-color:none">@(date.ToString("dd/MM/yyyy"))</p>
+        </div>
+        <div class="col-5 row" style="justify-content:space-around">
+            <p class="col-2" style="background-color:none">رقم الحصة</p>
+            <p class="col-2" style="background-color:none">@(number)</p>
+        </div>
+        <a class="col-2 row btn btn-outline-danger" @onclick="@DeleteSession">خذف</a>
+    </div>
+    <table class="fl-table">
+        <thead>
+        <tr>
+            <th>رقم الطالب</th>
+            <th>إسام الطالب</th>
+            <th>حضور الطالب</th>
+        </tr>
+        </thead>
+        <tbody>
+            @if(students==null)
+            {
+                <span>Loading...</span>
+            }
+            else
+            {
+               @foreach (var student in students)
+			    {
+                    @if(student!=null)
+                    {
+                        <tr>
+					        <td> @(student.StudentID)</td>
+					        <td>@(student.Name)</td>
+                            <td class="">  @if(student.Attendances != null)
+                                    {
+                                        @foreach(var attendence in student.Attendances)
+                                        {
+                                        <input type="checkbox" class="" @bind="@(attendence.AttendanceStatus)" style="margin-left:5px" @onclick="@(() => Update(attendence))" @onpointerover="@((PointerEventArgs args) => DisplayDate(args, attendence.AttendanceDate,attendence.SessionNumber))" />
+                                        }
+                                    }
+                            </td>
+				        </tr>
+                    }
+			    } 
+            }
+        </tbody>
+    </table>
+    
+</div>
+@*<a class="btn bg-danger" @onclick="@UpdateAttendance"></a>*@
+
+
+@code {
+    private List<Student> students  { get; set; } = new List<Student>();
+    private DateTime date { get; set; }
+    private int number { get; set; }
+    [Parameter]
+    public int CourseIdParameter { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetStudents();
+    }
+    public void DisplayDate(PointerEventArgs args, DateTime d, int s)
+    {
+        date = d;
+        number = s;
+    }
+
+    public async void Update(CourseAttendance courseAttendance)
+    {
+        AttendanceInfo attendance = new AttendanceInfo()
+        {
+             SessionNumber = courseAttendance.SessionNumber,
+			 AttendanceStatus = !(courseAttendance.AttendanceStatus),
+			 StudentId = courseAttendance.StudentId
+		};
+        await manager.UpdateAtten(attendance,courseAttendance.CourseAttendanceId);
+        //StateHasChanged();
+        //await OnInitializedAsync();
+    }
+    public async Task GetStudents()
+    {
+        if(CourseIdParameter==0)
+            students = await manager.GetStudent();
+        else
+        {
+            students = await manager.GetStudentsByCourse(CourseIdParameter);
+        }
+    }
+    public async void DeleteSession()
+    {
+        foreach(var student in students)
+        {
+            var attendence = student.Attendances.Where(a => a.SessionNumber == number).FirstOrDefault();
+            if(attendence!=null)
+            {
+                await manager.DeleteSession(attendence.CourseAttendanceId);
+            }
+        }
+        await OnInitializedAsync();
+        StateHasChanged();
+    }
+
+}

@@ -1,0 +1,70 @@
+﻿@using Blazored.LocalStorage;
+@inject ILocalStorageService localStorage;
+@inject NavigationManager navigationManager;
+@inject AuthenticationStateProvider authenticationStateProvider;
+<div class="top-row ps-3 navbar navbar-dark" dir="rtl">
+    <div class="container-fluid" >
+        
+        <a  class="navbar-brand" href="" style="font-size:18px">الساحر في الرياضيات</a>
+        <div style="background-image:url(../Images/ML.png);      
+        background-repeat: no-repeat;
+        background-size: contain; 
+        min-height:50px;
+        min-width:50px" ></div>
+        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</div>
+
+<div class="@NavMenuCssClass" @onclick="ToggleNavMenu" dir="rtl">
+    <nav class="flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All" style="font-size:18px">
+                <span class="oi oi-home" aria-hidden="true"></span> الصفحة الرئيسة
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="AddNewCourse" style="font-size:18px">
+                <span class="oi oi-plus" aria-hidden="true"></span> اضافة مجموعة جديدية
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="courses" style="font-size:18px">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> عرض المجموعات
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="AddNewStudent" style="font-size:18px">
+                <span class="oi oi-plus" aria-hidden="true"></span> اضافة طالب جديد
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link " href="students" style="font-size:18px">
+                <span class="oi oi-person" aria-hidden="true"></span> عرض الطلاب
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link " @onclick="@Logout" style="font-size:18px">
+                <span class="oi oi-fullscreen-exit btn-outline-danger" aria-hidden="true"></span> الخروج
+            </NavLink>
+        </div>
+    </nav>
+</div>
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+    public async Task Logout()
+    {
+        await localStorage.RemoveItemAsync("authToken");
+        await authenticationStateProvider.GetAuthenticationStateAsync();
+        navigationManager.NavigateTo("Login");
+    }
+}

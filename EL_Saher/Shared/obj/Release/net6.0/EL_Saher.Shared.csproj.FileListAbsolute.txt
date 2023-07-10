@@ -1,0 +1,12 @@
+D:\EL_Saher\EL_Saher\Shared\bin\Release\net6.0\EL_Saher.Shared.deps.json
+D:\EL_Saher\EL_Saher\Shared\bin\Release\net6.0\EL_Saher.Shared.dll
+D:\EL_Saher\EL_Saher\Shared\bin\Release\net6.0\EL_Saher.Shared.pdb
+D:\EL_Saher\EL_Saher\Shared\obj\Release\net6.0\EL_Saher.Shared.csproj.AssemblyReference.cache
+D:\EL_Saher\EL_Saher\Shared\obj\Release\net6.0\EL_Saher.Shared.GeneratedMSBuildEditorConfig.editorconfig
+D:\EL_Saher\EL_Saher\Shared\obj\Release\net6.0\EL_Saher.Shared.AssemblyInfoInputs.cache
+D:\EL_Saher\EL_Saher\Shared\obj\Release\net6.0\EL_Saher.Shared.AssemblyInfo.cs
+D:\EL_Saher\EL_Saher\Shared\obj\Release\net6.0\EL_Saher.Shared.csproj.CoreCompileInputs.cache
+D:\EL_Saher\EL_Saher\Shared\obj\Release\net6.0\EL_Saher.Shared.dll
+D:\EL_Saher\EL_Saher\Shared\obj\Release\net6.0\refint\EL_Saher.Shared.dll
+D:\EL_Saher\EL_Saher\Shared\obj\Release\net6.0\EL_Saher.Shared.pdb
+D:\EL_Saher\EL_Saher\Shared\obj\Release\net6.0\ref\EL_Saher.Shared.dll

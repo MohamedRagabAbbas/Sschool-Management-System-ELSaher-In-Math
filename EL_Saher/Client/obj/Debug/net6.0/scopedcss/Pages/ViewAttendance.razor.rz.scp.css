@@ -1,0 +1,221 @@
+*[b-izjnhao8h8] {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+body[b-izjnhao8h8] {
+    font-family: Helvetica;
+    -webkit-font-smoothing: antialiased;
+    background: rgba( 71, 147, 227, 1);
+    position:absolute
+}
+
+h2[b-izjnhao8h8] {
+    text-align: center;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: white;
+    padding: 30px 0;
+}
+
+/* Table Styles */
+
+.table-wrapper[b-izjnhao8h8] {
+    margin: 0px 10%;
+    box-shadow: 0px 35px 50px rgba( 0, 0, 0, 0.2 );
+}
+
+.addAtten[b-izjnhao8h8] {
+    margin: 20px 10%;
+}
+
+.fl-table[b-izjnhao8h8] {
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: normal;
+    border: none;
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 100%;
+    white-space: nowrap;
+    background-color: white;
+}
+
+    .fl-table td[b-izjnhao8h8], .fl-table th[b-izjnhao8h8] {
+        text-align: center;
+        padding: 8px;
+    }
+
+    .fl-table td[b-izjnhao8h8] {
+        border-right: 1px solid #f8f8f8;
+        font-size: 12px;
+    }
+
+    .fl-table thead th[b-izjnhao8h8] {
+        color: #ffffff;
+        background: #4FC3A1;
+    }
+
+
+        .fl-table thead th:nth-child(odd)[b-izjnhao8h8] {
+            color: #ffffff;
+            background: #324960;
+        }
+
+    .fl-table tr:nth-child(even)[b-izjnhao8h8] {
+        background: #F8F8F8;
+    }
+
+/* Responsive */
+
+@media (max-width: 767px) {
+    .fl-table[b-izjnhao8h8] {
+        display: block;
+        width: 100%;
+    }
+
+    .table-wrapper[b-izjnhao8h8]:before {
+        content: "Scroll horizontally >";
+        display: block;
+        text-align: right;
+        font-size: 11px;
+        color: white;
+        padding: 0 0 10px;
+    }
+
+    .fl-table thead[b-izjnhao8h8], .fl-table tbody[b-izjnhao8h8], .fl-table thead th[b-izjnhao8h8] {
+        display: block;
+    }
+
+        .fl-table thead th:last-child[b-izjnhao8h8] {
+            border-bottom: none;
+        }
+
+    .fl-table thead[b-izjnhao8h8] {
+        float: left;
+    }
+
+    .fl-table tbody[b-izjnhao8h8] {
+        width: auto;
+        position: relative;
+        overflow-x: auto;
+    }
+
+    .fl-table td[b-izjnhao8h8], .fl-table th[b-izjnhao8h8] {
+        padding: 20px .625em .625em .625em;
+        height: 60px;
+        vertical-align: middle;
+        box-sizing: border-box;
+        overflow-x: hidden;
+        overflow-y: auto;
+        width: 120px;
+        font-size: 13px;
+        text-overflow: ellipsis;
+    }
+
+    .fl-table thead th[b-izjnhao8h8] {
+        text-align: left;
+        border-bottom: 1px solid #f7f7f9;
+    }
+
+    .fl-table tbody tr[b-izjnhao8h8] {
+        display: table-cell;
+    }
+
+        .fl-table tbody tr:nth-child(odd)[b-izjnhao8h8] {
+            background: none;
+        }
+
+    .fl-table tr:nth-child(even)[b-izjnhao8h8] {
+        background: transparent;
+    }
+
+    .fl-table tr td:nth-child(odd)[b-izjnhao8h8] {
+        background: #F8F8F8;
+        border-right: 1px solid #E6E4E4;
+    }
+
+    .fl-table tr td:nth-child(even)[b-izjnhao8h8] {
+        border-right: 1px solid #E6E4E4;
+    }
+
+    .fl-table tbody td[b-izjnhao8h8] {
+        display: block;
+        text-align: center;
+    }
+}
+
+.Title[b-izjnhao8h8] {
+    justify-content: center;
+    text-align: center;
+    font-size: 30px;
+}
+
+.ALetter[b-izjnhao8h8] {
+    font-size: 50px;
+    color: mediumspringgreen;
+    text-decoration: underline;
+}
+
+
+
+body[b-izjnhao8h8] {
+    text-align: center;
+}
+
+.tooltip[b-izjnhao8h8] {
+    position: relative;
+    display: inline-block;
+    cursor: default;
+}
+
+    .tooltip .tooltiptext[b-izjnhao8h8] {
+        visibility: hidden;
+        padding: 0.25em 0.5em;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        border-radius: 0.25em;
+        white-space: nowrap;
+        /* Position the tooltip */
+        position: absolute;
+        z-index: 1;
+        top: 100%;
+        left: 100%;
+        transition-property: visibility;
+        transition-delay: 0s;
+    }
+
+    .tooltip:hover .tooltiptext[b-izjnhao8h8] {
+        visibility: visible;
+        transition-delay: 0.3s;
+    }
+
+
+*[b-izjnhao8h8] {
+    margin: 0px;
+    padding: 0px;
+}
+
+
+
+.Main-Text:hover  ~ .Extra-Text[b-izjnhao8h8] {
+    display: block;
+    position:relative;
+    z-index:100;
+}
+
+.Extra-Text[b-izjnhao8h8] {
+    background-color:;
+    margin-top: 10px;
+    width: 200px;
+    padding: 10px;
+    font-size: 16px;
+    display: none;
+
+}
+
+
+

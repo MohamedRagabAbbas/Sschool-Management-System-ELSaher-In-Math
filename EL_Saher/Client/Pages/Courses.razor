@@ -1,0 +1,140 @@
+﻿@using EL_Saher.Client.Services
+@using EL_Saher.Shared
+@using EL_Saher.Shared.Models.ServiceModels;
+@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Authorization
+@inject IManager manager
+@inject IUserServices userService
+@page "/courses"
+
+@attribute [Authorize]
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<AuthorizeView>
+	<Authorized>
+	<h3 class="Title"><span class="CLetter">المجموعات</span></h3>
+	@if(courses==null)
+	{
+		<span>...يتم تحضير المجموعات لاظهارها</span>
+	}
+	else
+	{
+		<div class="row container" style="" >
+			@foreach(var item in courses)
+			{
+				@if(item!=null)
+				{
+					<div class="container  col-4  " style="border-radius:10px; background-color:#B799FF; width:300px; margin-bottom:20px" >
+						<div class="container p-4" >
+							<div>
+								<h3 style="text-align:center">المجموعة رقم @(item.CourseID)</h3>
+							</div>
+							<div>
+								<span>اسم المجموعة   </span>
+									<input type="text" class="input-group " style="border-radius:5px; background-color:#FFFFE8; padding:5px" value="@(item.Name)" @oninput="@((ChangeEventArgs args) => ChangeName(args, item))" />
+							</div>
+							<div>
+								<span>الصف   </span>
+								<input type="text" class="input-group " style="border-radius:5px; background-color:#FFFFE8; padding:5px" value="@(item.Grade)" @oninput="@((ChangeEventArgs args) => ChangeGrade(args, item))" />
+							</div>
+							<div>
+								<span>سعر المجموعة   </span>
+									<input type="text" class="input-group " style="border-radius:5px; background-color:#FFFFE8; padding:5px" value="@(item.Cost)" @oninput="@((ChangeEventArgs args) => ChangeCost(args, item))"/>
+							</div>
+							<div>
+								<span>المواعيد   </span>
+									<input type="text" class="input-group " style="border-radius:5px; background-color:#FFFFE8; padding:5px" value="@(item.Schedule)" @oninput="@((ChangeEventArgs args) => ChangeSchedule(args, item))" />
+							</div>
+							<div>
+								<span>عدد الطلاب : </span>
+								<span>@(item.Students.Count)</span>
+							</div>
+						</div>
+						<div style="justify-self:center; align-self:center; margin-top:10px; margin-bottom:10px; max-width:100%">
+								<a class="btn " style="min-width:80%; margin-right:10%; background-color:#FFDCB6" href="/AddNewStudentWithParameter/@(item.CourseID)/@(item.Grade)"> اضافة طالب الي المجموعة</a>
+							<a class="btn " style="min-width:80%; margin-top:10px; margin-right:10%; background-color:#ADE4DB" href="/studentsWithParameter/@(item.CourseID)"> عرض الطلاب</a>
+							<a class="btn " style="min-width:80%; margin-top:10px; margin-right:10%; background-color:#FFE7A0" href="/attendence/@(item.CourseID)"> اضافة  قائمة حضور</a>
+							<a class="btn " style="min-width:80%; margin-top:10px; margin-right:10%; background-color:#E5BEEC" href="/viewAttendence/@(item.CourseID)"> عرض قائمة الحضور</a>
+							<a class="btn " style="min-width:80%; margin-top:10px; margin-right:10%; background-color:#FFE7A0" href="/Exam/@(item.CourseID)"> عرض الامتحانات</a>
+							<a class="btn " style="min-width:80%; margin-top:10px; margin-right:10%; background-color:#ADE4DB" href="/Fees/@(item.CourseID)"> رسوم الحضور </a>
+							<a class="btn btn-outline-danger " style="min-width:80%; margin-top:10px; margin-right:10%;" @onclick="@(()=> deleteCourse(item.CourseID))">حذف هذة المجموعة</a>
+						</div>
+					</div>
+				}
+			}
+		</div>
+	}
+	</Authorized>
+</AuthorizeView>
+@code {
+	private List<Course> courses;
+	protected override async Task OnInitializedAsync()
+	{
+		courses = await manager.GetCourses();
+	}
+	public async Task ChangeName(ChangeEventArgs args, Course course)
+	{
+		if (args.Value != null && !string.IsNullOrEmpty(args.Value.ToString()) && !string.IsNullOrWhiteSpace(args.Value.ToString()))
+		{
+			var courseInfo = new CourseInfo()
+				{
+					Cost = course.Cost,
+					Name = args.Value.ToString(),
+					Schedule = course.Schedule,
+					Grade = course.Grade
+				};
+			await manager.UpdateCourse(courseInfo, course.CourseID);
+		}
+
+	}
+	public async Task ChangeCost(ChangeEventArgs args, Course course)
+	{
+		if (args.Value != null && !string.IsNullOrEmpty(args.Value.ToString()) && !string.IsNullOrWhiteSpace(args.Value.ToString()))
+		{
+			var courseInfo = new CourseInfo()
+				{
+					Cost = int.Parse(args.Value.ToString()),
+					Name = course.Name,
+					Schedule = course.Schedule,
+					Grade = course.Grade
+				};
+			await manager.UpdateCourse(courseInfo, course.CourseID);
+		}
+	}
+	public async Task ChangeSchedule(ChangeEventArgs args, Course course)
+	{
+		if (args.Value != null && !string.IsNullOrEmpty(args.Value.ToString()) && !string.IsNullOrWhiteSpace(args.Value.ToString()))
+		{
+			var courseInfo = new CourseInfo()
+				{
+					Cost = course.Cost,
+					Name = course.Name,
+					Schedule = args.Value.ToString(),
+					Grade = course.Grade
+				};
+			await manager.UpdateCourse(courseInfo, course.CourseID);
+		}
+	}
+public async Task ChangeGrade(ChangeEventArgs args, Course course)
+    {
+        if (args.Value != null && !string.IsNullOrEmpty(args.Value.ToString()) && !string.IsNullOrWhiteSpace(args.Value.ToString()))
+        {
+            var courseInfo = new CourseInfo()
+                {
+                    Cost = course.Cost,
+                    Name = course.Name,
+                    Schedule = course.Schedule,
+                    Grade = args.Value.ToString()
+                };
+            await manager.UpdateCourse(courseInfo, course.CourseID);
+        }
+    }
+	public async Task deleteCourse(int id)
+	{
+		await manager.DeleteCourseAsync(id);
+		await OnInitializedAsync();
+		StateHasChanged();
+	}
+}
+
