@@ -43,7 +43,15 @@ namespace EL_Saher.Server.Controllers
             return Ok();
         }
 
-        [HttpPut("UpdateStudent/{studentId}")]
+        [HttpPut("UpdateStudentsGrade/{courseId}")]
+		public async Task UpdateStudentsGrade([FromBody] string grade, [FromRoute] int courseId)
+        {
+            await manager.UpdateStudentsGrade(grade, courseId);
+		}
+
+
+
+		[HttpPut("UpdateStudent/{studentId}")]
         public async Task<IActionResult> UpdateStudent([FromRoute]int studentId, [FromBody] StudentInfo student)
         {
             await manager.UpdateStudent(student, studentId);

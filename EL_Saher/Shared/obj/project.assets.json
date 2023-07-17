@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\EL_Saher\\EL_Saher\\Shared\\EL_Saher.Shared.csproj",
+      "projectUniqueName": "D:\\My Projects\\Sschool-Management-System-ELSaher-In-Math\\EL_Saher\\Shared\\EL_Saher.Shared.csproj",
       "projectName": "EL_Saher.Shared",
-      "projectPath": "D:\\EL_Saher\\EL_Saher\\Shared\\EL_Saher.Shared.csproj",
+      "projectPath": "D:\\My Projects\\Sschool-Management-System-ELSaher-In-Math\\EL_Saher\\Shared\\EL_Saher.Shared.csproj",
       "packagesPath": "C:\\Users\\AUC\\.nuget\\packages\\",
-      "outputPath": "D:\\EL_Saher\\EL_Saher\\Shared\\obj\\",
+      "outputPath": "D:\\My Projects\\Sschool-Management-System-ELSaher-In-Math\\EL_Saher\\Shared\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -67,7 +67,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
       }
     }
   }

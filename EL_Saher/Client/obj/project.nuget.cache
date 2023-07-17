@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "b2fbhqVBpPEwU5zBKi+7wS1SKQgBv2tCkWzrxoRBt7s5sJSDli9+3Z2cYZWhc/1cq7ZVVCKw08LxNiMouxOsbg==",
+  "dgSpecHash": "aaAPpodPMlD5zMKe7Iv9xRYFlmVcX+xwWR1qPmaTdnFOWGlix68GKt/K4sswbAUeMOUJpZjoiTbiiPZQFsybEQ==",
   "success": true,
-  "projectFilePath": "D:\\EL_Saher\\EL_Saher\\Client\\EL_Saher.Client.csproj",
+  "projectFilePath": "D:\\My Projects\\Sschool-Management-System-ELSaher-In-Math\\EL_Saher\\Client\\EL_Saher.Client.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\AUC\\.nuget\\packages\\blazored.localstorage\\4.3.0\\blazored.localstorage.4.3.0.nupkg.sha512",
     "C:\\Users\\AUC\\.nuget\\packages\\microsoft.aspnetcore.authorization\\6.0.18\\microsoft.aspnetcore.authorization.6.0.18.nupkg.sha512",
@@ -35,7 +35,7 @@
     "C:\\Users\\AUC\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
     "C:\\Users\\AUC\\.nuget\\packages\\system.text.encodings.web\\6.0.0\\system.text.encodings.web.6.0.0.nupkg.sha512",
     "C:\\Users\\AUC\\.nuget\\packages\\system.text.json\\6.0.0\\system.text.json.6.0.0.nupkg.sha512",
-    "C:\\Users\\AUC\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\6.0.18\\microsoft.netcore.app.runtime.mono.browser-wasm.6.0.18.nupkg.sha512"
+    "C:\\Users\\AUC\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\6.0.20\\microsoft.netcore.app.runtime.mono.browser-wasm.6.0.20.nupkg.sha512"
   ],
   "logs": []
 }

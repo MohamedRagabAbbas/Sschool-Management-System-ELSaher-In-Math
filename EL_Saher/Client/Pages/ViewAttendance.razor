@@ -46,7 +46,7 @@
                                     {
                                         @foreach(var attendence in student.Attendances)
                                         {
-                                        <input type="checkbox" class="" @bind="@(attendence.AttendanceStatus)" style="margin-left:5px" @onclick="@(() => Update(attendence))" @onpointerover="@((PointerEventArgs args) => DisplayDate(args, attendence.AttendanceDate,attendence.SessionNumber))" />
+                                            <input type="checkbox" class="" @bind="@(attendence.AttendanceStatus)" style="margin-left:5px" @onclick="@(() => Update(attendence))" @onpointerover="@((PointerEventArgs args) => DisplayDate(args, attendence.AttendanceDate,attendence.SessionNumber))" />
                                         }
                                     }
                             </td>

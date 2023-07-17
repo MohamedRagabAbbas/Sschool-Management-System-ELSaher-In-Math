@@ -14,7 +14,8 @@ namespace EL_Saher.Client.Services
         public Task DeleteCourseAsync(int courseId);
         public Task AddStudentAsync(StudentInfo student);
         public Task AddSession(AttendanceInfo attendance);
-        public Task UpdateAttendance(List<CourseAttendance> attendances);
+        public  Task UpdateStudentsGrade(string grade, int courseId);
+		public Task UpdateAttendance(List<CourseAttendance> attendances);
         public Task UpdateAtten(AttendanceInfo attendances, int id);
         public Task AddAttendance(AttendanceInfo attendance);
         public Task AddAttendances(List<AttendanceInfo> attendances);

@@ -33,8 +33,10 @@ namespace EL_Saher.Server.Services
 
         public Task UpdateStudents(List<Student> students);
         public Task UpdateStudent(StudentInfo students, int studentId);
+        public Task UpdateStudentsGrade(string grade, int courseId);
 
-        public Task AddExam(ExamInfo exam);
+
+		public Task AddExam(ExamInfo exam);
         public Task UpdateExam(ExamInfo exam,int _ExamId);
 
 

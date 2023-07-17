@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "mQiDwKaYsmoqW+/j6S9nJRZXTOaELE3L921VEHPu2xZNBcjH1MXCczEI1DXPbX/RC+AuDZKd2rPC9JhvWcs2aA==",
+  "dgSpecHash": "8l5L2jzb/U8FWSCTuWa9g5WENvqdaV8n2L6da2O/PjhFLAqJXaBnj1Pvhr3RDWZzxEzwFJtetuaAPIXGV5Ii9Q==",
   "success": true,
-  "projectFilePath": "D:\\EL_Saher\\EL_Saher\\Server\\EL_Saher.Server.csproj",
+  "projectFilePath": "D:\\My Projects\\Sschool-Management-System-ELSaher-In-Math\\EL_Saher\\Server\\EL_Saher.Server.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\AUC\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\AUC\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",

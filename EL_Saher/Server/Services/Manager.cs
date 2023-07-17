@@ -17,42 +17,50 @@ namespace EL_Saher.Server.Services
             DbContext = _DbContext;
         }
 
-        // Adding Methods
-        public async Task<List<Student>> GetExcellentStudents(int CourseId)
-        {
-            var Course = DbContext.Courses.Find(CourseId);
-            
-            if(Course!=null)
-            {
-                List<Student> Students = await DbContext.Students.Where(x => x.CourseId == CourseId ).Include(x=>x.Exams).ToListAsync();
-                List<KeyValuePair<Student, decimal>> scores  = new List<KeyValuePair<Student, decimal>>();
+		// Adding Methods
+		public async Task<List<Student>> GetExcellentStudents(int CourseId)
+		{
+			var Course = DbContext.Courses.Find(CourseId);
 
-                foreach(var student in Students)
-                {
-                    decimal ExamsScore = 0;
-                    int counter = 0;
-                    foreach (var Exam in student.Exams)
-                    {
-                        ExamsScore += (Exam.Score)/(Exam.OutOf);
-                        counter += 1;
-                    }
-                    ExamsScore/=counter;
-                    scores.Add(new KeyValuePair<Student, decimal>(student, ExamsScore));
-                }
-                scores.Sort((x, y) => y.Value.CompareTo(x.Value));
-                List<Student> ExcellentStudents = new List<Student>();
-                for(int i=0;i<scores.Count/3; i++)
-                {
-                    ExcellentStudents.Add(scores[i].Key);
-                }
-                return ExcellentStudents;
-            }
-            else
-            {
-                return new List<Student>();
-            }
-        }
-        public async Task AddNewCourse(CourseInfo newCourse)
+			if (Course != null)
+			{
+				List<Student> Students = await DbContext.Students.Where(x => x.CourseId == CourseId).Include(x => x.Exams).ToListAsync();
+				List<KeyValuePair<Student, decimal>> scores = new List<KeyValuePair<Student, decimal>>();
+
+				foreach (var student in Students)
+				{
+					decimal ExamsScore = 0;
+					int counter = 0;
+					if (student.Exams != null)
+					{
+						foreach (var Exam in student.Exams)
+						{
+							if (Exam != null)
+							{
+								if (Exam.OutOf == 0) Exam.OutOf = 1;
+								ExamsScore += (Exam.Score) / (Exam.OutOf);
+								counter += 1;
+							}
+						}
+						if (counter != 0)
+							ExamsScore /= counter;
+						scores.Add(new KeyValuePair<Student, decimal>(student, ExamsScore));
+					}
+				}
+				scores.Sort((x, y) => y.Value.CompareTo(x.Value));
+				List<Student> ExcellentStudents = new List<Student>();
+				for (int i = 0; i < scores.Count / 3; i++)
+				{
+					ExcellentStudents.Add(scores[i].Key);
+				}
+				return ExcellentStudents;
+			}
+			else
+			{
+				return new List<Student>();
+			}
+		}
+		public async Task AddNewCourse(CourseInfo newCourse)
         {
             var NewCourse = new Course() { Name = newCourse.Name, Cost = newCourse.Cost, Schedule = newCourse.Schedule, Grade = newCourse.Grade };
             await DbContext.Courses.AddAsync(NewCourse);
@@ -238,6 +246,21 @@ namespace EL_Saher.Server.Services
 			DbContext.Courses.Update(_course);
 			await DbContext.SaveChangesAsync();
         }
+
+		public async Task UpdateStudentsGrade(string grade, int courseId)
+        {
+            var students = await GetAllStudentsByCourseId(courseId);
+            if(students!=null)
+            {
+                foreach(var student in students)
+                {
+					student.StudentGrade = grade;
+				}
+                DbContext.UpdateRange(students);
+                await DbContext.SaveChangesAsync();
+            }
+        }
+
 
 
 		public async Task AddAttendance(AttendanceInfo attendance)

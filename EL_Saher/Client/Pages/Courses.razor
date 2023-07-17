@@ -32,19 +32,19 @@
 							</div>
 							<div>
 								<span>اسم المجموعة   </span>
-									<input type="text" class="input-group " style="border-radius:5px; background-color:#FFFFE8; padding:5px" value="@(item.Name)" @oninput="@((ChangeEventArgs args) => ChangeName(args, item))" />
+									<input type="text" class="input-group " style="border-radius:5px; background-color:#FFFFE8; padding:5px" value="@(item.Name)" @onchange="@((ChangeEventArgs args) => ChangeName(args, item))" />
 							</div>
 							<div>
 								<span>الصف   </span>
-								<input type="text" class="input-group " style="border-radius:5px; background-color:#FFFFE8; padding:5px" value="@(item.Grade)" @oninput="@((ChangeEventArgs args) => ChangeGrade(args, item))" />
+									<input type="text" class="input-group " style="border-radius:5px; background-color:#FFFFE8; padding:5px" value="@(item.Grade)" @onchange="@((ChangeEventArgs args) => ChangeGrade(args, item))" />
 							</div>
 							<div>
 								<span>سعر المجموعة   </span>
-									<input type="text" class="input-group " style="border-radius:5px; background-color:#FFFFE8; padding:5px" value="@(item.Cost)" @oninput="@((ChangeEventArgs args) => ChangeCost(args, item))"/>
+									<input type="text" class="input-group " style="border-radius:5px; background-color:#FFFFE8; padding:5px" value="@(item.Cost)" @onchange="@((ChangeEventArgs args) => ChangeCost(args, item))" />
 							</div>
 							<div>
 								<span>المواعيد   </span>
-									<input type="text" class="input-group " style="border-radius:5px; background-color:#FFFFE8; padding:5px" value="@(item.Schedule)" @oninput="@((ChangeEventArgs args) => ChangeSchedule(args, item))" />
+									<input type="text" class="input-group " style="border-radius:5px; background-color:#FFFFE8; padding:5px" value="@(item.Schedule)" @onchange="@((ChangeEventArgs args) => ChangeSchedule(args, item))" />
 							</div>
 							<div>
 								<span>عدد الطلاب : </span>
@@ -116,19 +116,23 @@
 			await manager.UpdateCourse(courseInfo, course.CourseID);
 		}
 	}
-public async Task ChangeGrade(ChangeEventArgs args, Course course)
-    {
-        if (args.Value != null && !string.IsNullOrEmpty(args.Value.ToString()) && !string.IsNullOrWhiteSpace(args.Value.ToString()))
-        {
-            var courseInfo = new CourseInfo()
+	public async Task ChangeGrade(ChangeEventArgs args, Course course)
+	{
+		if (args.Value != null && !string.IsNullOrEmpty(args.Value.ToString()) && !string.IsNullOrWhiteSpace(args.Value.ToString()))
+		{
+			var courseInfo = new CourseInfo()
                 {
                     Cost = course.Cost,
                     Name = course.Name,
                     Schedule = course.Schedule,
                     Grade = args.Value.ToString()
                 };
-            await manager.UpdateCourse(courseInfo, course.CourseID);
-        }
+			await manager.UpdateCourse(courseInfo, course.CourseID);
+		}
+		if (course.Students!=null)
+		{
+			await manager.UpdateStudentsGrade(args.Value.ToString(), course.CourseID);
+		}
     }
 	public async Task deleteCourse(int id)
 	{

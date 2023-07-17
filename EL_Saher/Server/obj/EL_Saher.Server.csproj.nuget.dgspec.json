@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\EL_Saher\\EL_Saher\\Server\\EL_Saher.Server.csproj": {}
+    "D:\\My Projects\\Sschool-Management-System-ELSaher-In-Math\\EL_Saher\\Server\\EL_Saher.Server.csproj": {}
   },
   "projects": {
-    "D:\\EL_Saher\\EL_Saher\\Client\\EL_Saher.Client.csproj": {
+    "D:\\My Projects\\Sschool-Management-System-ELSaher-In-Math\\EL_Saher\\Client\\EL_Saher.Client.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\EL_Saher\\EL_Saher\\Client\\EL_Saher.Client.csproj",
+        "projectUniqueName": "D:\\My Projects\\Sschool-Management-System-ELSaher-In-Math\\EL_Saher\\Client\\EL_Saher.Client.csproj",
         "projectName": "EL_Saher.Client",
-        "projectPath": "D:\\EL_Saher\\EL_Saher\\Client\\EL_Saher.Client.csproj",
+        "projectPath": "D:\\My Projects\\Sschool-Management-System-ELSaher-In-Math\\EL_Saher\\Client\\EL_Saher.Client.csproj",
         "packagesPath": "C:\\Users\\AUC\\.nuget\\packages\\",
-        "outputPath": "D:\\EL_Saher\\EL_Saher\\Client\\obj\\",
+        "outputPath": "D:\\My Projects\\Sschool-Management-System-ELSaher-In-Math\\EL_Saher\\Client\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -33,8 +33,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\EL_Saher\\EL_Saher\\Shared\\EL_Saher.Shared.csproj": {
-                "projectPath": "D:\\EL_Saher\\EL_Saher\\Shared\\EL_Saher.Shared.csproj"
+              "D:\\My Projects\\Sschool-Management-System-ELSaher-In-Math\\EL_Saher\\Shared\\EL_Saher.Shared.csproj": {
+                "projectPath": "D:\\My Projects\\Sschool-Management-System-ELSaher-In-Math\\EL_Saher\\Shared\\EL_Saher.Shared.csproj"
               }
             }
           }
@@ -81,7 +81,7 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.NETCore.App.Runtime.Mono.browser-wasm",
-              "version": "[6.0.18, 6.0.18]"
+              "version": "[6.0.20, 6.0.20]"
             }
           ],
           "frameworkReferences": {
@@ -89,7 +89,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {
@@ -98,14 +98,14 @@
         }
       }
     },
-    "D:\\EL_Saher\\EL_Saher\\Server\\EL_Saher.Server.csproj": {
+    "D:\\My Projects\\Sschool-Management-System-ELSaher-In-Math\\EL_Saher\\Server\\EL_Saher.Server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\EL_Saher\\EL_Saher\\Server\\EL_Saher.Server.csproj",
+        "projectUniqueName": "D:\\My Projects\\Sschool-Management-System-ELSaher-In-Math\\EL_Saher\\Server\\EL_Saher.Server.csproj",
         "projectName": "EL_Saher.Server",
-        "projectPath": "D:\\EL_Saher\\EL_Saher\\Server\\EL_Saher.Server.csproj",
+        "projectPath": "D:\\My Projects\\Sschool-Management-System-ELSaher-In-Math\\EL_Saher\\Server\\EL_Saher.Server.csproj",
         "packagesPath": "C:\\Users\\AUC\\.nuget\\packages\\",
-        "outputPath": "D:\\EL_Saher\\EL_Saher\\Server\\obj\\",
+        "outputPath": "D:\\My Projects\\Sschool-Management-System-ELSaher-In-Math\\EL_Saher\\Server\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -121,18 +121,18 @@
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files\\dotnet\\library-packs": {},
-          "C:\\Program Files\\dotnet\\sdk\\7.0.304\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
+          "C:\\Program Files\\dotnet\\sdk\\7.0.306\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\EL_Saher\\EL_Saher\\Client\\EL_Saher.Client.csproj": {
-                "projectPath": "D:\\EL_Saher\\EL_Saher\\Client\\EL_Saher.Client.csproj"
+              "D:\\My Projects\\Sschool-Management-System-ELSaher-In-Math\\EL_Saher\\Client\\EL_Saher.Client.csproj": {
+                "projectPath": "D:\\My Projects\\Sschool-Management-System-ELSaher-In-Math\\EL_Saher\\Client\\EL_Saher.Client.csproj"
               },
-              "D:\\EL_Saher\\EL_Saher\\Shared\\EL_Saher.Shared.csproj": {
-                "projectPath": "D:\\EL_Saher\\EL_Saher\\Shared\\EL_Saher.Shared.csproj"
+              "D:\\My Projects\\Sschool-Management-System-ELSaher-In-Math\\EL_Saher\\Shared\\EL_Saher.Shared.csproj": {
+                "projectPath": "D:\\My Projects\\Sschool-Management-System-ELSaher-In-Math\\EL_Saher\\Shared\\EL_Saher.Shared.csproj"
               }
             }
           }
@@ -203,18 +203,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\EL_Saher\\EL_Saher\\Shared\\EL_Saher.Shared.csproj": {
+    "D:\\My Projects\\Sschool-Management-System-ELSaher-In-Math\\EL_Saher\\Shared\\EL_Saher.Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\EL_Saher\\EL_Saher\\Shared\\EL_Saher.Shared.csproj",
+        "projectUniqueName": "D:\\My Projects\\Sschool-Management-System-ELSaher-In-Math\\EL_Saher\\Shared\\EL_Saher.Shared.csproj",
         "projectName": "EL_Saher.Shared",
-        "projectPath": "D:\\EL_Saher\\EL_Saher\\Shared\\EL_Saher.Shared.csproj",
+        "projectPath": "D:\\My Projects\\Sschool-Management-System-ELSaher-In-Math\\EL_Saher\\Shared\\EL_Saher.Shared.csproj",
         "packagesPath": "C:\\Users\\AUC\\.nuget\\packages\\",
-        "outputPath": "D:\\EL_Saher\\EL_Saher\\Shared\\obj\\",
+        "outputPath": "D:\\My Projects\\Sschool-Management-System-ELSaher-In-Math\\EL_Saher\\Shared\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -263,7 +263,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -44,7 +44,13 @@ namespace EL_Saher.Client.Services
                 return student;
         }
 
-        public async Task AddStudentAsync(StudentInfo student)
+
+		public async Task UpdateStudentsGrade( string grade, int courseId)
+		{
+            await httpClient.PutAsJsonAsync<string>($"api/Student/UpdateStudentsGrade/{courseId}", grade);
+		}
+
+		public async Task AddStudentAsync(StudentInfo student)
         {
             await httpClient.PostAsJsonAsync<StudentInfo>($"api/Student/AddNewStudent", student);
 
