@@ -53,6 +53,10 @@ namespace EL_Saher.Server.Services
         public Task<ServiceResponse<Student>> LoginMobileApp(string UserName, string PhoneNumber);
         public Task<bool> ISValid(string UserName, string PhoneNumber);
 
+        public Task HandelMonthFees(string name, int fee, int studentId);
+
+
+
 
 
 

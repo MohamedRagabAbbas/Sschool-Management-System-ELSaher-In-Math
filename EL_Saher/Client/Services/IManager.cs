@@ -38,6 +38,9 @@ namespace EL_Saher.Client.Services
 
         public Task deleteStudent(int studentId);
 
+        //public async Task HandelMonthFees(string name, int fee, int studentId);
+
+
 
 
 

@@ -33,5 +33,12 @@ namespace EL_Saher.Server.Controllers
             return Ok();
         }
 
+        [HttpPost ("AddSingleMonthFees/{name}/{fee}/{studentId}")]
+        public async Task<IActionResult> AddSingleMonthFees(string name, int fee, int studentId)
+        {
+            await manager.HandelMonthFees(name, fee, studentId);
+            return Ok();
+        }
+
     }
 }

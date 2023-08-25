@@ -79,6 +79,14 @@
 </div>
 
 
+<div class="row container addAtten" style="width:80%;  justify-self:center; justify-content:space-evenly">
+    <input type="number" placeholder="رقم الطالب" class="col-3 input-group-text text-end" style="margin-left:10px;" @bind="studentId" />
+    <input type="text" placeholder="إسم الشهر" class="col-3 input-group-text text-end" style="margin-left:10px;" @bind="MonthName2" />
+    <input type="number" placeholder="رسوم الحضور:" class="col-3 input-group-text text-end" style="margin-left:30px;" @bind="MonthFee2" />
+    <input type="submit" value="إضافة" class="btn col-2 bg-danger" @onclick="@AddSingleMonth" />
+</div>
+
+
 
 @code {
     private List<Student> students { get; set; } = new List<Student>();
@@ -86,6 +94,10 @@
     public string MonthName { get; set; } = string.Empty;
     public int MonthFee { get; set; } 
     public string MonthNameDeleted { get; set; } = string.Empty;
+
+    public int studentId { get; set; }
+    public string MonthName2 { get; set; } = string.Empty;
+    public int MonthFee2 { get; set; }
     [Parameter]
     public int CourseIdParameter { get; set; }
 
@@ -109,8 +121,6 @@
         await OnInitializedAsync();
         StateHasChanged();
     }
-
-
     public async Task GetStudents()
     {
         if(CourseIdParameter==0)
@@ -125,7 +135,6 @@
             student = stu;
         }
     }
-
     public async void IspaidChange(ChangeEventArgs args, EL_Saher.Shared.MonthFee month)
     {
         MonthFeeInfo newmonth = new MonthFeeInfo()
@@ -148,6 +157,19 @@
 
             }
         }
+        await OnInitializedAsync();
+        StateHasChanged();
+    }
+    public async Task AddSingleMonth()
+    {
+        MonthFeeInfo month = new MonthFeeInfo()
+            {
+                Fees = MonthFee2,
+                Name = MonthName2,
+                IsPaid = false,
+                StudentId = studentId
+            };
+        await manager.AddMonthFee(month);
         await OnInitializedAsync();
         StateHasChanged();
     }

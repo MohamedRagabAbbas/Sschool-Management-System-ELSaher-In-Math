@@ -5,6 +5,7 @@ using EL_Saher.Shared.Models;
 using EL_Saher.Shared.Models.ServiceModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
+using System.Linq;
 using static System.Net.WebRequestMethods;
 
 namespace EL_Saher.Server.Services
@@ -69,6 +70,7 @@ namespace EL_Saher.Server.Services
         public async Task AddNewStudent(StudentInfo newStudent)
         {
             var course = await DbContext.Courses.FindAsync(newStudent.CourseID);
+            //var student = await DbContext.Students.Include(x=>x.Attendances).Include(x => x.MonthFees).Include(x => x.Exams).FirstOrDefaultAsync(a => a.CourseId == newStudent.CourseID);
             if(course!=null)
             {
                 var NewStudent = new Student()
@@ -79,6 +81,7 @@ namespace EL_Saher.Server.Services
                     StudentRate = newStudent.StudentRate,
                     CourseId = newStudent.CourseID
                 };
+
                 await DbContext.Students.AddAsync(NewStudent);
                 DbContext.SaveChanges();
             }
@@ -407,9 +410,18 @@ namespace EL_Saher.Server.Services
             return result;
         }
 
-
-
-
+        public async Task HandelMonthFees(string name, int fee, int studentId)
+        {
+            var month = new MonthFee()
+            {
+                Fees = fee,
+                StudentId = studentId,
+                IsPaid = false,
+                Month = DateTime.Now,
+                Name = name
+            };
+            await DbContext.MonthFees.AddAsync(month);
+        }
 
     }
 }
