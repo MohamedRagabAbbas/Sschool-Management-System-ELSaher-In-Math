@@ -1,0 +1,106 @@
+﻿@page "/statistics"
+@inject IManager manager
+@using EL_Saher.Client.Services;
+@using EL_Saher.Shared;
+<main>
+    <h3 class="Title"><span class="CLetter">الإحصائيات</span></h3>
+    <div class="container Courses row">
+        @if (AllStanderedMonths != null)
+        {
+            @foreach (var entity in AllStanderedMonths)
+            {
+                    <div class="container col-12 row Course text-center border-3 " >
+                    <h3 class="text-center">مجموعة : <span>@(entity.Value.Name)</span></h3>
+                        <div class="basics col-12 row p-2 ">
+                        <h5 class="col-3"> عدد الطلاب :  <span>@(entity.Value.Students.Count)</span></h5>
+                        <h5 class="col-3"> فلوس الدرس :  <span>@(entity.Value.Cost) </span></h5>
+                        <h5 class="col-3"> الاجمالي المتوقع :  <span>@(entity.Value.Students.Count * entity.Value.Cost)</span></h5>
+                        </div>
+                        @foreach (var m in entity.Key.Key)
+                        {
+                            @foreach (var n in entity.Key.Value)
+                            {
+                                <h4>@m.Name</h4>
+                                <div class="basics col-12 row p-2 ">
+                                    <h5 class="col-2"> عدد الطلاب :  <span>@(n.number)</span></h5>
+                                     <h5 class="col-3"> تم الدفع  :  <span>@(n.paid) </span></h5>
+                                <h5 class="col-2"> لم يتم الدفع :  <span>@(n.notPaid)</span></h5>
+                                <h5 class="col-3"> اجمالي المبلغ  <span>@(n.paid * entity.Value.Cost)</span></h5>
+                                </div>
+                            }
+                        }
+                </div>
+                    
+            }
+        }
+        else
+        {
+           <h>...انتظر هتي يتم تحميل البيانات</h> 
+        }
+    </div>
+</main>
+
+@code {
+    private List<Course> courses;
+    struct info
+    {
+        public int number;
+        public int paid;
+        public int notPaid;
+    }
+    //List<KeyValuePair<List<MonthFee>, List<info>>> AllStanderedMonths = new List<KeyValuePair<List<MonthFee>, List<info>>>();
+    List<KeyValuePair<KeyValuePair<List<MonthFee>, List<info>>, Course>> AllStanderedMonths = new List<KeyValuePair<KeyValuePair<List<MonthFee>, List<info>>, Course>>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        courses = await manager.GetCourses();
+        if(courses!=null)
+        {
+            foreach (var course in courses)
+            {
+                if (course != null)
+                {
+                    if (course.Students != null)
+                    {
+                        //var standeredStudent = course.Students.First();
+
+                        List<Student> s = await manager.GetStudentsByCourse(course.CourseID); 
+                        var standeredStudent = s.FirstOrDefault();
+                        List<MonthFee> StanderedMonths = new List<MonthFee>();
+                        List<info> inf = new List<info>();
+                        for (int i = 0; i < standeredStudent.MonthFees.Count; i++)
+                        {
+                            MonthFee m = new MonthFee();
+                            m = standeredStudent.MonthFees.ElementAt(i);
+                            StanderedMonths.Add(m);
+                        }
+                        foreach (var m in StanderedMonths)
+                        {
+                            info f = new info();
+                            int counter1 = 0;
+                            int counter2 = 0;
+                            f.number = s.SelectMany(e => e.MonthFees).Where(c => c.Name == m.Name).ToList().Count;
+                            List<MonthFee> mons = s.SelectMany(e => e.MonthFees).Where(c => c.Name == m.Name).ToList();
+                            foreach (var mm in mons)
+                            {
+                                if (mm.IsPaid)
+                                    counter1++;
+                                else
+                                {
+                                    counter2++;
+                                }
+                            }
+                            f.paid = counter1;
+                            f.notPaid = counter2;
+                            inf.Add(f);
+                        }
+                        KeyValuePair<List<MonthFee>, List<info>> v = new KeyValuePair<List<MonthFee>, List<info>>(  StanderedMonths, inf );
+                        KeyValuePair<KeyValuePair<List<MonthFee>, List<info>> , Course> vv = new KeyValuePair<KeyValuePair<List<MonthFee>, List<info>>, Course>( v ,course);
+                        AllStanderedMonths.Add(vv);
+                    }
+                }
+            }
+        }
+    }
+
+}

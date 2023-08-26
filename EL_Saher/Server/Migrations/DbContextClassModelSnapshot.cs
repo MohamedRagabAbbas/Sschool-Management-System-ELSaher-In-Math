@@ -50,7 +50,7 @@ namespace EL_Saher.Server.Migrations
 
                     b.HasKey("CourseID");
 
-                    b.ToTable("Courses");
+                    b.ToTable("Courses", (string)null);
                 });
 
             modelBuilder.Entity("EL_Saher.Shared.CourseAttendance", b =>
@@ -77,7 +77,7 @@ namespace EL_Saher.Server.Migrations
 
                     b.HasIndex("StudentId");
 
-                    b.ToTable("CourseAttendances");
+                    b.ToTable("CourseAttendances", (string)null);
                 });
 
             modelBuilder.Entity("EL_Saher.Shared.Exam", b =>
@@ -113,7 +113,7 @@ namespace EL_Saher.Server.Migrations
 
                     b.HasIndex("StudentId");
 
-                    b.ToTable("Exams");
+                    b.ToTable("Exams", (string)null);
                 });
 
             modelBuilder.Entity("EL_Saher.Shared.Models.User", b =>
@@ -144,7 +144,7 @@ namespace EL_Saher.Server.Migrations
 
                     b.HasKey("UserId");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("EL_Saher.Shared.MonthFee", b =>
@@ -175,7 +175,7 @@ namespace EL_Saher.Server.Migrations
 
                     b.HasIndex("StudentId");
 
-                    b.ToTable("MonthFees");
+                    b.ToTable("MonthFees", (string)null);
                 });
 
             modelBuilder.Entity("EL_Saher.Shared.Student", b =>
@@ -208,7 +208,7 @@ namespace EL_Saher.Server.Migrations
 
                     b.HasIndex("CourseId");
 
-                    b.ToTable("Students");
+                    b.ToTable("Students", (string)null);
                 });
 
             modelBuilder.Entity("EL_Saher.Shared.CourseAttendance", b =>

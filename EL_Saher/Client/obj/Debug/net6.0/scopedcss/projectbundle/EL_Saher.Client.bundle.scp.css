@@ -1302,6 +1302,38 @@ label[b-uopom7lyrn] {
 .loginbttm[b-uopom7lyrn] {
     padding: 0px;
 }
+/* /Pages/Statistics.razor.rz.scp.css */
+.Title[b-tg3s3t9atd] {
+    justify-content: center;
+    text-align: center;
+    font-size: 30px;
+}
+
+main[b-tg3s3t9atd] {
+    min-height: 100vh;
+    background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
+}
+
+.CLetter[b-tg3s3t9atd] {
+    font-size: 50px;
+    color: slateblue;
+    
+    text-decoration: underline;
+}
+.Courses[b-tg3s3t9atd] {
+    justify-content:center;
+}
+
+.Course[b-tg3s3t9atd] {
+    border-radius: 20px;
+    background-image: linear-gradient(to right, #92fe9d 0%, #00c9ff 100%);
+    margin-bottom: 20px;
+    padding:10px;
+}
+.basics[b-tg3s3t9atd]{
+    justify-content:space-between;
+}
+
 /* /Pages/Students.razor.rz.scp.css */
 *[b-wsj2d9dauf] {
     box-sizing: border-box;

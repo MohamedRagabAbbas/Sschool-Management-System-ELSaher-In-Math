@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "yV+yYJ1zN96VXnZnS8+XWOuHrF7Siy2vAAk8rqpOOO8=",
+  "Hash": "bbM19hwMFI8r9TBnMI4P3GQE9ML8Pt9BOqt8n1EjdP8=",
   "Source": "EL_Saher.Server",
   "BasePath": "_content/EL_Saher.Server",
   "Mode": "Default",
@@ -11,10 +11,10 @@
       "Version": 2,
       "Source": "EL_Saher.Client",
       "GetPublishAssetsTargets": "ComputeFilesToPublish;GetCurrentProjectPublishStaticWebAssetItems",
-      "AdditionalPublishProperties": "BuildProjectReferences=false;ResolveAssemblyReferencesFindRelatedSatellites=true;_PublishingBlazorWasmProject=true;Configuration=Debug;Platform=AnyCPU",
+      "AdditionalPublishProperties": "BuildProjectReferences=false;ResolveAssemblyReferencesFindRelatedSatellites=true;_PublishingBlazorWasmProject=true",
       "AdditionalPublishPropertiesToRemove": "NoBuild;RuntimeIdentifier;WebPublishProfileFile;TargetFramework",
       "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
-      "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalBuildProperties": "",
       "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework"
     }
   ],
@@ -199,23 +199,6 @@
       "OriginalItemSpec": "D:\\My Projects\\Sschool-Management-System-ELSaher-In-Math\\EL_Saher\\Shared\\bin\\Debug\\net6.0\\EL_Saher.Shared.pdb"
     },
     {
-      "Identity": "D:\\My Projects\\Sschool-Management-System-ELSaher-In-Math\\EL_Saher\\Client\\bin\\Debug\\net6.0\\wwwroot\\_framework\\icudt.dat",
-      "SourceId": "EL_Saher.Client",
-      "SourceType": "Project",
-      "ContentRoot": "D:\\My Projects\\Sschool-Management-System-ELSaher-In-Math\\EL_Saher\\Client\\bin\\Debug\\net6.0\\wwwroot\\",
-      "BasePath": "/",
-      "RelativePath": "_framework/icudt.dat",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "BlazorWebAssemblyResource",
-      "AssetTraitValue": "native",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\AUC\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\6.0.20\\runtimes\\browser-wasm\\native\\icudt.dat"
-    },
-    {
       "Identity": "D:\\My Projects\\Sschool-Management-System-ELSaher-In-Math\\EL_Saher\\Client\\bin\\Debug\\net6.0\\wwwroot\\_framework\\icudt_CJK.dat",
       "SourceId": "EL_Saher.Client",
       "SourceType": "Project",
@@ -265,6 +248,23 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\AUC\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\6.0.20\\runtimes\\browser-wasm\\native\\icudt_no_CJK.dat"
+    },
+    {
+      "Identity": "D:\\My Projects\\Sschool-Management-System-ELSaher-In-Math\\EL_Saher\\Client\\bin\\Debug\\net6.0\\wwwroot\\_framework\\icudt.dat",
+      "SourceId": "EL_Saher.Client",
+      "SourceType": "Project",
+      "ContentRoot": "D:\\My Projects\\Sschool-Management-System-ELSaher-In-Math\\EL_Saher\\Client\\bin\\Debug\\net6.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/icudt.dat",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "BlazorWebAssemblyResource",
+      "AssetTraitValue": "native",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\AUC\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\6.0.20\\runtimes\\browser-wasm\\native\\icudt.dat"
     },
     {
       "Identity": "D:\\My Projects\\Sschool-Management-System-ELSaher-In-Math\\EL_Saher\\Client\\bin\\Debug\\net6.0\\wwwroot\\_framework\\Microsoft.AspNetCore.Authorization.dll",
@@ -7016,6 +7016,23 @@
       "OriginalItemSpec": "wwwroot\\css\\bootstrap\\bootstrap.min.css.map"
     },
     {
+      "Identity": "D:\\My Projects\\Sschool-Management-System-ELSaher-In-Math\\EL_Saher\\Client\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
+      "SourceId": "EL_Saher.Client",
+      "SourceType": "Project",
+      "ContentRoot": "D:\\My Projects\\Sschool-Management-System-ELSaher-In-Math\\EL_Saher\\Client\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "css/open-iconic/FONT-LICENSE",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\open-iconic\\FONT-LICENSE"
+    },
+    {
       "Identity": "D:\\My Projects\\Sschool-Management-System-ELSaher-In-Math\\EL_Saher\\Client\\wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css",
       "SourceId": "EL_Saher.Client",
       "SourceType": "Project",
@@ -7116,23 +7133,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.woff"
-    },
-    {
-      "Identity": "D:\\My Projects\\Sschool-Management-System-ELSaher-In-Math\\EL_Saher\\Client\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
-      "SourceId": "EL_Saher.Client",
-      "SourceType": "Project",
-      "ContentRoot": "D:\\My Projects\\Sschool-Management-System-ELSaher-In-Math\\EL_Saher\\Client\\wwwroot\\",
-      "BasePath": "/",
-      "RelativePath": "css/open-iconic/FONT-LICENSE",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\open-iconic\\FONT-LICENSE"
     },
     {
       "Identity": "D:\\My Projects\\Sschool-Management-System-ELSaher-In-Math\\EL_Saher\\Client\\wwwroot\\css\\open-iconic\\ICON-LICENSE",

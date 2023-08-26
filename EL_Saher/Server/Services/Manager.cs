@@ -1,4 +1,5 @@
 ﻿using Azure.Core;
+using EL_Saher.Client.Pages;
 using EL_Saher.Server.DataBase;
 using EL_Saher.Shared;
 using EL_Saher.Shared.Models;
@@ -7,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
 using System.Linq;
 using static System.Net.WebRequestMethods;
+using Exam = EL_Saher.Shared.Exam;
 
 namespace EL_Saher.Server.Services
 {
@@ -50,7 +52,7 @@ namespace EL_Saher.Server.Services
 				}
 				scores.Sort((x, y) => y.Value.CompareTo(x.Value));
 				List<Student> ExcellentStudents = new List<Student>();
-				for (int i = 0; i < scores.Count / 3; i++)
+				for (int i = 0; i < scores.Count / 3 || i < Course.StudentsNumber; i++)
 				{
 					ExcellentStudents.Add(scores[i].Key);
 				}
@@ -237,14 +239,15 @@ namespace EL_Saher.Server.Services
 
 		public async Task UpdateCourse(CourseInfo course, int courseId)
         {
-            
+
             var _course = new Course()
             {
-				CourseID = courseId,
-				Name = course.Name,
-				Cost = course.Cost,
-				Schedule = course.Schedule,
-                Grade = course.Grade
+                CourseID = courseId,
+                Name = course.Name,
+                Cost = course.Cost,
+                Schedule = course.Schedule,
+                Grade = course.Grade, 
+                StudentsNumber = course.number
 			};
 			DbContext.Courses.Update(_course);
 			await DbContext.SaveChangesAsync();
@@ -309,17 +312,39 @@ namespace EL_Saher.Server.Services
 
         public async Task AddExam(ExamInfo exam)
         {
-            Exam _exam = new Exam()
+            bool test = false;
+            int studentId = exam.StudentId;
+            var student = DbContext.Students.Include(x=>x.Exams).First(c=>c.StudentID == studentId);
+            if(student!=null)
             {
-                Date = exam.Date,
-                Name = exam.Name,
-                OutOf = exam.OutOf,
-                StudentId = exam.StudentId,
-                Score = exam.Score
+                if(student.Exams!=null)
+                {
+                    foreach(var e in student.Exams)
+                    {
+                        if(e!=null)
+                        {
+                            if(e.Name == exam.Name && e.OutOf == exam.OutOf)
+                            {
+                                test = true; break;
+                            }
+                        }
+                    }
+                }
+            }
+            if(test==false)
+            {
+				Exam _exam = new Exam()
+				{
+					Date = exam.Date,
+					Name = exam.Name,
+					OutOf = exam.OutOf,
+					StudentId = exam.StudentId,
+					Score = exam.Score
 
-            };
-            await DbContext.Exams.AddAsync(_exam);
-            await DbContext.SaveChangesAsync();
+				};
+				await DbContext.Exams.AddAsync(_exam);
+				await DbContext.SaveChangesAsync();
+			}
         }
         public async Task UpdateExam(ExamInfo exam, int _ExamId)
         {
@@ -349,16 +374,38 @@ namespace EL_Saher.Server.Services
 
         public async Task AddMonthFee(MonthFeeInfo monthFee)
         {
-            MonthFee _monthFee = new MonthFee()
-            {
-                IsPaid = monthFee.IsPaid,
-                Month = monthFee.Month,
-                StudentId = monthFee.StudentId,
-                Fees = monthFee.Fees, 
-                Name = monthFee.Name, 
-            };
-            await DbContext.MonthFees.AddAsync(_monthFee);
-            await DbContext.SaveChangesAsync();
+			bool test = false;
+			int studentId = monthFee.StudentId;
+			var student = DbContext.Students.Include(x => x.MonthFees).First(c => c.StudentID == studentId);
+			if (student != null)
+			{
+				if (student.MonthFees != null)
+				{
+					foreach (var e in student.MonthFees)
+					{
+						if (e != null)
+						{
+							if (e.Name == monthFee.Name && e.Fees == monthFee.Fees)
+							{
+								test = true; break;
+							}
+						}
+					}
+				}
+			}
+			if (test == false)
+			{
+				MonthFee _monthFee = new MonthFee()
+				{
+					IsPaid = monthFee.IsPaid,
+					Month = monthFee.Month,
+					StudentId = monthFee.StudentId,
+					Fees = monthFee.Fees,
+					Name = monthFee.Name,
+				};
+				await DbContext.MonthFees.AddAsync(_monthFee);
+				await DbContext.SaveChangesAsync();
+			}
         }
 
         public async Task UpdateMonthFees(MonthFeeInfo monthFee, int Id)

@@ -20,33 +20,38 @@
 <div class="@NavMenuCssClass" @onclick="ToggleNavMenu" dir="rtl">
     <nav class="flex-column">
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All" style="font-size:18px">
+            <NavLink class="nav-link btn-outline-primary" href="" Match="NavLinkMatch.All" style="font-size:18px">
                 <span class="oi oi-home" aria-hidden="true"></span> الصفحة الرئيسة
             </NavLink>
         </div>
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="AddNewCourse" style="font-size:18px">
+            <NavLink class="nav-link btn-outline-primary" href="AddNewCourse" style="font-size:18px">
                 <span class="oi oi-plus" aria-hidden="true"></span> اضافة مجموعة جديدية
             </NavLink>
         </div>
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="courses" style="font-size:18px">
+            <NavLink class="nav-link btn-outline-primary" href="courses" style="font-size:18px">
                 <span class="oi oi-list-rich" aria-hidden="true"></span> عرض المجموعات
             </NavLink>
         </div>
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="AddNewStudent" style="font-size:18px">
+            <NavLink class="nav-link btn-outline-primary" href="AddNewStudent" style="font-size:18px">
                 <span class="oi oi-plus" aria-hidden="true"></span> اضافة طالب جديد
             </NavLink>
         </div>
         <div class="nav-item px-3">
-            <NavLink class="nav-link " href="students" style="font-size:18px">
+            <NavLink class="nav-link  btn-outline-primary" href="students" style="font-size:18px">
                 <span class="oi oi-person" aria-hidden="true"></span> عرض الطلاب
             </NavLink>
         </div>
         <div class="nav-item px-3">
-            <NavLink class="nav-link " @onclick="@Logout" style="font-size:18px">
-                <span class="oi oi-fullscreen-exit btn-outline-danger" aria-hidden="true"></span> الخروج
+            <NavLink class="nav-link btn-outline-primary " href="statistics" style="font-size:18px">
+                <span class="oi oi-dashboard " aria-hidden="true"></span> الاحصائيات
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link  btn-outline-danger" @onclick="@Logout" style="font-size:18px">
+                <span class="oi oi-fullscreen-exit " aria-hidden="true"></span> الخروج
             </NavLink>
         </div>
     </nav>

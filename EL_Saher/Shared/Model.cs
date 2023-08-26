@@ -21,8 +21,7 @@ namespace EL_Saher.Shared
 
         public decimal? Cost { get; set; }
 
-        public int StudentsNumber { get; set; }
-
+        public int StudentsNumber { get; set; } = 1;
 
         public string Schedule { get; set; } = string.Empty;
 

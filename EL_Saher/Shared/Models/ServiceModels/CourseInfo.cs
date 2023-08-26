@@ -12,5 +12,6 @@ namespace EL_Saher.Shared.Models.ServiceModels
         public string Grade { get; set; } = string.Empty;
         public decimal? Cost { get; set; }
         public string Schedule { get; set; } = string.Empty;
+        public int number { get; set; } = 1;
     }
 }

@@ -1,0 +1,31 @@
+﻿.Title {
+    justify-content: center;
+    text-align: center;
+    font-size: 30px;
+}
+
+main {
+    min-height: 100vh;
+    background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
+}
+
+.CLetter {
+    font-size: 50px;
+    color: slateblue;
+    
+    text-decoration: underline;
+}
+.Courses {
+    justify-content:center;
+}
+
+.Course {
+    border-radius: 20px;
+    background-image: linear-gradient(to right, #92fe9d 0%, #00c9ff 100%);
+    margin-bottom: 20px;
+    padding:10px;
+}
+.basics{
+    justify-content:space-between;
+}
+

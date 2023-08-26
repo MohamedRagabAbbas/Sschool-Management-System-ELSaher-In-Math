@@ -1690,3 +1690,4 @@ D:\My Projects\Sschool-Management-System-ELSaher-In-Math\EL_Saher\Client\obj\Rel
 D:\My Projects\Sschool-Management-System-ELSaher-In-Math\EL_Saher\Client\obj\Release\net6.0\refint\EL_Saher.Client.dll
 D:\My Projects\Sschool-Management-System-ELSaher-In-Math\EL_Saher\Client\obj\Release\net6.0\EL_Saher.Client.pdb
 D:\My Projects\Sschool-Management-System-ELSaher-In-Math\EL_Saher\Client\obj\Release\net6.0\ref\EL_Saher.Client.dll
+D:\My Projects\Sschool-Management-System-ELSaher-In-Math\EL_Saher\Client\obj\Release\net6.0\scopedcss\Pages\Statistics.razor.rz.scp.css

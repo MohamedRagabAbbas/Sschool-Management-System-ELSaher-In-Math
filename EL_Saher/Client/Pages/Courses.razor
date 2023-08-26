@@ -46,6 +46,10 @@
 								<span>المواعيد   </span>
 									<input type="text" class="input-group " style="border-radius:5px; background-color:#FFFFE8; padding:5px" value="@(item.Schedule)" @onchange="@((ChangeEventArgs args) => ChangeSchedule(args, item))" />
 							</div>
+								<div>
+									<span>عدد الطلاب المتفوقون   </span>
+									<input type="text" class="input-group " style="border-radius:5px; background-color:#FFFFE8; padding:5px" value="@(item.StudentsNumber)" @onchange="@((ChangeEventArgs args) => ChangeNumber(args, item))" />
+								</div>
 							<div>
 								<span>عدد الطلاب : </span>
 								<span>@(item.Students.Count)</span>
@@ -112,6 +116,22 @@
 					Name = course.Name,
 					Schedule = args.Value.ToString(),
 					Grade = course.Grade
+				};
+			await manager.UpdateCourse(courseInfo, course.CourseID);
+		}
+	}
+	public async Task ChangeNumber(ChangeEventArgs args, Course course)
+	{
+		if (args.Value != null && !string.IsNullOrEmpty(args.Value.ToString()) && !string.IsNullOrWhiteSpace(args.Value.ToString()))
+		{
+			var courseInfo = new CourseInfo()
+				{
+					Cost = course.Cost,
+					Name = course.Name,
+					Schedule = course.Schedule,
+					Grade = course.Grade,
+					number = int.Parse(args.Value.ToString())
+					 
 				};
 			await manager.UpdateCourse(courseInfo, course.CourseID);
 		}

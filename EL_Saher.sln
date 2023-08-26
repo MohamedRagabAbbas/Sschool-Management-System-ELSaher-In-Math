@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EL_Saher.Server", "EL_Saher\Server\EL_Saher.Server.csproj", "{F02F730B-EFA2-493D-B58C-0292B46ED1E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EL_Saher.Server", "EL_Saher\Server\EL_Saher.Server.csproj", "{F02F730B-EFA2-493D-B58C-0292B46ED1E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EL_Saher.Client", "EL_Saher\Client\EL_Saher.Client.csproj", "{55F7022E-0389-4E24-B4B2-C4EDFF69BA19}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EL_Saher.Client", "EL_Saher\Client\EL_Saher.Client.csproj", "{55F7022E-0389-4E24-B4B2-C4EDFF69BA19}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EL_Saher.Shared", "EL_Saher\Shared\EL_Saher.Shared.csproj", "{E387D598-81BF-492D-A98C-DCA82AFD0EB0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EL_Saher.Shared", "EL_Saher\Shared\EL_Saher.Shared.csproj", "{E387D598-81BF-492D-A98C-DCA82AFD0EB0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
